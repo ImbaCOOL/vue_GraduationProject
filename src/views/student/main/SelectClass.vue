@@ -1,7 +1,6 @@
 <template>
   <div>
-      student
-      <router-view></router-view>
+      选课
   </div>
 </template>
 

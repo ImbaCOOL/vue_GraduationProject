@@ -1,7 +1,6 @@
 <template>
   <div>
-      student
-      <router-view></router-view>
+      教师课表
   </div>
 </template>
 

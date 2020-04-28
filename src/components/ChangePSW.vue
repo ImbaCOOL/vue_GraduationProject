@@ -1,7 +1,6 @@
 <template>
   <div>
-      student
-      <router-view></router-view>
+      修改密码
   </div>
 </template>
 

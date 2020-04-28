@@ -1,6 +1,7 @@
 <template>
   <div>
       teacher
+      <router-view></router-view>
   </div>
 </template>
 

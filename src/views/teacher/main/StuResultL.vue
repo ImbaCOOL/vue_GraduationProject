@@ -1,7 +1,6 @@
 <template>
   <div>
-      student
-      <router-view></router-view>
+      成绩列表
   </div>
 </template>
 
