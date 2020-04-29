@@ -2,7 +2,9 @@
   <div class="login">
       <img src="../../assets/login.jpg" alt="">
       <el-form ref="form" :model="form" label-width="auto" @submit.native.prevent>
-        <div class="title">学校信息管理系统用户登录</div>
+        <img src="../../assets/icon.jpg" alt="">
+        <div class="title">学校信息管理系统</div>
+        <div class="title2">用户登录</div>
         <el-form-item label="用户名：">
           <el-input v-model="form.username" clearable placeholder="请输入用户名"></el-input>
         </el-form-item>
@@ -35,6 +37,15 @@ export default {
         }
       }
     },
+    created(){
+      if(sessionStorage.getItem("admin")){
+        this.$router.replace("/admin/home")
+      }else if(sessionStorage.getItem("teacher")){
+        this.$router.replace("/teacher/home")
+      }else if(sessionStorage.getItem("student")){
+        this.$router.replace("/student/home")
+      }
+    },
     methods: {
       async onSubmit() {
         if(!(this.form.username&&this.form.password)){
@@ -48,7 +59,8 @@ export default {
           case "管理员":
             var {err,data}=await loginAPI.loginByAdmin(this.form.username,this.form.password)
             if(err===0&&data!==null){
-              this.$router.push("/admin/home")
+              sessionStorage.setItem("admin",[this.form.username,this.form.password])
+              this.$router.replace("/admin/home")
             }else{
               this.$message.error({
                 message:'用户名或密码不正确！',
@@ -59,7 +71,8 @@ export default {
           case "教师":
             var {err,data}=await loginAPI.loginByTeach(this.form.username,this.form.password)
             if(err===0&&data!==null){
-              this.$router.push("/teacher/home")
+              sessionStorage.setItem("teacher",[this.form.username,this.form.password])
+              this.$router.replace("/teacher/home")
             }else{
               this.$message.error({
                 message:'用户名或密码不正确！',
@@ -70,7 +83,8 @@ export default {
           case "学生":
             var {err,data}=await loginAPI.loginByStu(this.form.username,this.form.password)
             if(err===0&&data!==null){
-              this.$router.push("/student/home")
+              sessionStorage.setItem("student",[this.form.username,this.form.password])
+              this.$router.replace("/student/home")
             }else{
               this.$message.error({
                 message:'用户名或密码不正确！',
@@ -109,9 +123,22 @@ export default {
       margin-left: 120px;
     }
     .title{
-      margin: 0 0px 30px;
+      margin: 0 0px 10px;
       text-align: center;
       font-size: 18px;
+    }
+    .title2{
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    img{
+      position: absolute;
+      top: 18px;
+      left: 60px;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
     }
   }
 }
