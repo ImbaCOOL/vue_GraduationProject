@@ -13,6 +13,18 @@ class Login{
         let url = "/api/student/login"
         return axios.get(url,{params:{username,password}})
     }
+    changePSWadmin(username,password) {
+        let url = "/api/admin/changePSW"
+        return axios.put(url,{username,password})
+    }
+    changePSWstu(username,password) {
+        let url = "/api/student/changePSW"
+        return axios.put(url,{username,password})
+    }
+    changePSWteach(username,password) {
+        let url = "/api/teacher/changePSW"
+        return axios.put(url,{username,password})
+    }
 }
 
 export default new Login()
