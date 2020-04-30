@@ -5,7 +5,6 @@
         <el-aside width="200px">
           <el-menu :router="true">
             <el-menu-item index="/admin/home"><i class="el-icon-s-home"></i>首页</el-menu-item>
-            <el-menu-item index="/admin/noticeList"><i class="el-icon-message-solid"></i>首页公告管理</el-menu-item>
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-user-solid"></i>个人信息管理</template>
               <el-menu-item index="/admin/adminInfo">个人信息</el-menu-item>

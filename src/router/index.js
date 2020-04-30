@@ -9,7 +9,6 @@ const admin = () => import('../views/admin/Admin.vue')
 const student = () => import('../views/student/Student.vue')
 const teacher = () => import('../views/teacher/Teacher.vue')
 // 二级
-const noticeList = () => import('../views/admin/main/NoticeList.vue')
 const adminInfo = () => import('../views/admin/main/AdminInfo.vue')
 const teacherList = () => import('../views/admin/main/TeacherList.vue')
 const teachScheduleL = () => import('../views/admin/main/TeachScheduleL.vue')
@@ -44,10 +43,6 @@ const routes = [
       {
         path: "home",
         component: home
-      },
-      {
-        path: "noticeList",
-        component: noticeList
       },
       {
         path: "adminInfo",

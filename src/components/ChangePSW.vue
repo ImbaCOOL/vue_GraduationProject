@@ -4,14 +4,22 @@
       <div slot="header">
         <span>修改密码</span>
       </div>
-      <el-form ref="form" :model="form" label-width="auto" @submit.native.prevent  :hide-required-asterisk="true" :status-icon="true">
+      <el-form ref="form" :model="form" label-width="auto" @submit.native.prevent status-icon>
         <el-form-item label="用户名：">
           <el-input v-model="form.username" disabled></el-input>
         </el-form-item>
-        <el-form-item label="旧密码：" :required="true">
+        <el-form-item label="旧密码：" prop="oldPSW"
+          :rules="[
+            { required: true, message: '请输入旧密码', trigger: 'blur' }
+          ]"
+        >
           <el-input v-model="form.oldPSW" show-password clearable placeholder="请输入旧密码"></el-input>
         </el-form-item>
-        <el-form-item label="新密码：">
+        <el-form-item label="新密码：" prop="newPSW"
+          :rules="[
+            { required: true, message: '请输入新密码', trigger: 'blur' }
+          ]"
+        >
           <el-input v-model="form.newPSW" show-password clearable placeholder="请输入新密码"></el-input>
         </el-form-item>
         <el-button type="primary" @click="changePSW">确认修改</el-button>

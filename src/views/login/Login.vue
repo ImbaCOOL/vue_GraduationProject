@@ -118,7 +118,7 @@ export default {
     right: 120px;
     background: #fff;
     padding: 20px 20px 10px;
-    border-radius: 30px;
+    border-radius: 50px;
     .el-button{
       margin-left: 120px;
     }

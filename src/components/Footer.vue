@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    ©2019-2020 Design by ImbaCOOL
+    ©2019-2020 Design by ImbaCOOL 版权所有
   </div>
 </template>
 
