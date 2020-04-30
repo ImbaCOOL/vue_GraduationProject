@@ -129,8 +129,25 @@
           <el-input v-model="form.major" clearable placeholder="请输入专业"></el-input>
         </el-form-item>
 
+        <el-form-item label="头像：" prop="img"
+          :rules="[
+            { required: true, message: '请上传头像', trigger: 'blur' }
+          ]">
+          <el-upload
+            class="upload"
+            ref="upload"
+            action=""
+            :auto-upload="false"
+            :show-file-list="false">
+            <el-button slot="trigger" size="small" type="primary">选取图片</el-button>
+            <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png/jpeg/gif图片，且不超过5M</div>
+            <img :src="'http://localhost:2020'+form.img" alt="">
+          </el-upload>
+        </el-form-item>
+
       </el-form>
-      <el-button type="primary" @click="change">确认修改</el-button>
+      <el-button type="primary" @click="change" class="confirm">确认修改</el-button>
     </el-card>
   </div>
 </template>
@@ -141,7 +158,6 @@ import adminAPI from '../../../api/admin/adminAPI'
 export default {
   data() {
     return {
-      loading:true,
       form: {
         username: sessionStorage.getItem("admin").split(",")[0],
         adminID: '',
@@ -231,6 +247,37 @@ export default {
     }
   },
   methods:{
+    async submitUpload(){
+      if(!this.$refs.upload.uploadFiles[0]){ 
+        return this.$message.error({
+          message:'请选择一张图片！',
+          duration:2000
+        });
+      }
+      let file = this.$refs.upload.uploadFiles[0].raw
+      let {size,type} = file 
+      let types = ['jpg', "jpeg", 'gif', 'png']
+      // 判断图片大小(5M)
+      if(size>5242880){ 
+        return this.$message.error({
+          message:'只能上传小于5M的图片！',
+          duration:2000
+        });
+      }
+      // 限制文件类型
+      if(types.indexOf(type.split('/')[1])===-1){ 
+        return this.$message.error({
+          message:'只能上传类型为jpg/jpeg/png/gif的图片！',
+          duration:2000
+        });
+      }
+      let formdata = new FormData()
+      formdata.append('img',file)
+      let {err,path} = await loginAPI.uploadImg(formdata)
+      if(err===0){
+        this.form.img=path
+      }
+    },
     handleHometown(value){
       this.hometown=value
     },
@@ -245,7 +292,13 @@ export default {
       this.form.hometown=this.form.hometown.join("")
       let {err}= await adminAPI.updateAdmin(this.form)
       if(err===0){
-        this.$router.history.go()
+        this.$alert('修改成功', '提示', {
+          confirmButtonText: '确定',
+          type:"success",
+          callback: action => {
+            this.$router.history.go()
+          }
+        });
       }
     }
   }
@@ -253,7 +306,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-button{
+.confirm{
   margin-left: 850px;
+}
+.el-upload__tip{
+  margin-top: 0;
+}
+.upload{
+  img{
+    width: 80px;
+    height: 80px;
+    margin-left: 30px;
+  }
 }
 </style>

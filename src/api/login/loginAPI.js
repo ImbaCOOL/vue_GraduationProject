@@ -25,6 +25,10 @@ class Login{
         let url = "/api/teacher/changePSW"
         return axios.put(url,{username,password})
     }
+    uploadImg(formdata) {
+        let url = "/api/upload/img"
+        return axios.post(url,formdata)
+    }
 }
 
 export default new Login()
