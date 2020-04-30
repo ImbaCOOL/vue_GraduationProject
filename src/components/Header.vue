@@ -40,7 +40,13 @@ export default {
     handleCommand(command){
       switch (command) {
         case "a":
-          this.$router.push("/admin/changePSW")
+          if(sessionStorage.getItem("admin")){
+            this.$router.push("/admin/changePSW")
+          }else if(sessionStorage.getItem("teacher")){
+            this.$router.push("/teacher/changePSW")
+          }else if(sessionStorage.getItem("student")){
+            this.$router.push("/student/changePSW")
+          }
           break;
         case "b":
           sessionStorage.clear()

@@ -33,11 +33,24 @@ import loginAPI from '../api/login/loginAPI';
 export default {
   data() {
     return {
+      password:'',
       form: {
-        username: sessionStorage.getItem("admin").split(",")[0],
+        username: '',
         oldPSW: '',
         newPSW:''
       }
+    }
+  },
+  created(){
+    if(sessionStorage.getItem("admin")){
+      this.form.username=sessionStorage.getItem("admin").split(",")[0]
+      this.password=sessionStorage.getItem("admin").split(",")[1]
+    }else if(sessionStorage.getItem("teacher")){
+      this.form.username=sessionStorage.getItem("teacher").split(",")[0]
+      this.password=sessionStorage.getItem("teacher").split(",")[1]
+    }else if(sessionStorage.getItem("student")){
+      this.form.username=sessionStorage.getItem("student").split(",")[0]
+      this.password=sessionStorage.getItem("student").split(",")[1]
     }
   },
   methods: {
@@ -49,7 +62,7 @@ export default {
         });
         return false
       }
-      if(this.form.oldPSW!==sessionStorage.getItem("admin").split(",")[1]){
+      if(this.form.oldPSW!==this.password){
         this.$message.error({
           message:'旧密码错误！',
           duration:2000

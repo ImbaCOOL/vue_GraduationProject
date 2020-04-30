@@ -8,7 +8,7 @@
             <el-submenu index="1">
               <template slot="title"><i class="el-icon-user-solid"></i>个人信息管理</template>
               <el-menu-item index="/admin/adminInfo">个人信息</el-menu-item>
-              <el-menu-item index="/admin/changePSW">密码修改</el-menu-item>
+              <el-menu-item index="/admin/changePSW">修改密码</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title"><i class="el-icon-s-cooperation"></i>教师信息管理</template>
