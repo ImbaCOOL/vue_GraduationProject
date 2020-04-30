@@ -177,8 +177,8 @@
 </template>
 
 <script>
-import loginAPI from '../../../api/login/loginAPI'
-import studentAPI from '../../../api/student/studentAPI'
+import loginAPI from '../../../api/loginAPI'
+import studentAPI from '../../../api/studentAPI'
 export default {
   data() {
     return {

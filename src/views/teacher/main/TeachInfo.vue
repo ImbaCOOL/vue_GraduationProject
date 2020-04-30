@@ -153,8 +153,8 @@
 </template>
 
 <script>
-import loginAPI from '../../../api/login/loginAPI'
-import teacherAPI from '../../../api/teacher/teacherAPI'
+import loginAPI from '../../../api/loginAPI'
+import teacherAPI from '../../../api/teacherAPI'
 export default {
   data() {
     return {

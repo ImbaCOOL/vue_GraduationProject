@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import loginAPI from "../../api/login/loginAPI"
+import loginAPI from "../../api/loginAPI"
 export default {
   data() {
       return {
