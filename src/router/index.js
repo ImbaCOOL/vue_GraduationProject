@@ -67,13 +67,13 @@ const routes = [
         component: teacherList,
         children: [
           {
+            path: "add",
+            component:TAdd
+          },
+          {
             path: ":id",
             component:TDetail
           },
-          {
-            path: "add",
-            component:TAdd
-          }
         ]
       },
       {
@@ -81,13 +81,13 @@ const routes = [
         component: teachScheduleL,
         children: [
           {
+            path: "add",
+            component:TSAdd
+          },
+          {
             path: ":id",
             component:TSDetail
           },
-          {
-            path: "add",
-            component:TSAdd
-          }
         ]
       },
       {
@@ -95,13 +95,13 @@ const routes = [
         component: studentList,
         children: [
           {
+            path: "add",
+            component:SAdd
+          },
+          {
             path: ":id",
             component:SDetail
           },
-          {
-            path: "add",
-            component:SAdd
-          }
         ]
       },
       {

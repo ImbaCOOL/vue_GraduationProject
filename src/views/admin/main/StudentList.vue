@@ -3,6 +3,7 @@
     <el-card class="card">
       <div slot="header">
         <span>全校学生列表</span>
+        <el-button type="primary" class="btn" @click="add">添加学生</el-button>
       </div>
       <el-table
         :data="tableData"
@@ -69,6 +70,9 @@ export default {
     }
   },
   methods:{
+    add(){
+      this.$router.history.push("/admin/studentList/add")
+    },
     async change(scope) {
       // console.log(scope.row.stuID);
       this.$router.push(`/admin/studentList/${scope.row.stuID}`)
@@ -91,6 +95,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.btn{
+  float: right; 
+  padding: 3px 0;
+  width: 80px;
+  height: 35px;
+}
 .btn2{
   margin-left: 10px;
 }

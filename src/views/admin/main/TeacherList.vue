@@ -3,6 +3,7 @@
     <el-card class="card">
       <div slot="header">
         <span>全校教师列表</span>
+        <el-button type="primary" class="btn" @click="add">添加教师</el-button>
       </div>
       <el-table
         :data="tableData"
@@ -49,6 +50,7 @@
 <script>
 import teacherAPI from "../../../api/teacherAPI"
 export default {
+  name:"a",
   data() {
     return {
       tableData: []
@@ -69,6 +71,9 @@ export default {
     }
   },
   methods:{
+    add(){
+      this.$router.history.push("/admin/teacherList/add")
+    },
     async change(scope) {
       // console.log(scope.row.teacherID);
       this.$router.push(`/admin/teacherList/${scope.row.teacherID}`)
@@ -91,6 +96,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.btn{
+  float: right; 
+  padding: 3px 0;
+  width: 80px;
+  height: 35px;
+}
 .btn2{
   margin-left: 10px;
 }

@@ -17,6 +17,10 @@ class Student{
         let url = "/api/student/findByID"
         return axios.get(url,{params:{stuID}})
     }
+    addStudent(obj) {
+        let url = "/api/student/add"
+        return axios.post(url,{obj})
+    }
 }
 
 export default new Student()

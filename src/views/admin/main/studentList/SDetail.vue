@@ -181,6 +181,7 @@
 
 <script>
 import studentAPI from '../../../../api/studentAPI'
+import loginAPI from '../../../../api/loginAPI'
 export default {
   data() {
     return {
@@ -305,7 +306,7 @@ export default {
       this.hometown=value
     },
     async change(){
-      if(!(this.form.stuID&&this.form.name&&this.form.cellphone&&this.form.gender&&this.form.date&&this.form.birthdate&&this.form.hometown&&this.form.ID&&this.form.education&&this.form.faculty&&this.form.department&&this.form.major&&this.form.img)){
+      if(!(this.form.stuID&&this.form.name&&this.form.cellphone&&this.form.gender&&this.form.date&&this.form.birthdate&&this.form.hometown&&this.form.ID&&this.form.education&&this.form.faculty&&this.form.department&&this.form.major&&this.form.img&&this.form.direction&&this.form.Class&&this.form.grade)){
         this.$message.error({
           message:'内容不能为空！',
           duration:2000
