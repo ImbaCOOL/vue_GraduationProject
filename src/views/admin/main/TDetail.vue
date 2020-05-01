@@ -1,8 +1,8 @@
 <template>
-  <div class="TDetail">
+  <div>
     <el-card class="card">
       <div slot="header">
-        <span>{{form.name}}老师的个人信息</span>
+        <span>{{form.name}} 老师的个人信息</span>
       </div>
       <el-form ref="form" :model="form" label-width="auto" @submit.native.prevent status-icon inline>
 
