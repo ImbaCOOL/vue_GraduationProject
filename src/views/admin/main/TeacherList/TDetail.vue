@@ -2,7 +2,7 @@
   <div>
     <el-card class="card">
       <div slot="header">
-        <span>{{form.name}} 同学的个人信息</span>
+        <span>{{form.name}} 老师的个人信息</span>
       </div>
       <el-form ref="form" :model="form" label-width="auto" @submit.native.prevent status-icon inline>
 
@@ -10,8 +10,8 @@
           <el-input v-model="form.username" disabled></el-input>
         </el-form-item>
 
-        <el-form-item label="学生ID：">
-          <el-input v-model="form.stuID" disabled></el-input>
+        <el-form-item label="教师ID：">
+          <el-input v-model="form.teacherID" disabled></el-input>
         </el-form-item>
 
         <el-form-item label="姓名：" prop="name"
@@ -129,30 +129,6 @@
           <el-input v-model="form.major" clearable placeholder="请输入专业"></el-input>
         </el-form-item>
 
-        <el-form-item label="专业方向：" prop="direction"
-          :rules="[
-            { required: true, message: '请输入专业方向', trigger: 'blur' }
-          ]"
-        >
-          <el-input v-model="form.direction" clearable placeholder="请输入专业方向"></el-input>
-        </el-form-item>
-
-        <el-form-item label="班级：" prop="Class"
-          :rules="[
-            { required: true, message: '请输入班级', trigger: 'blur' }
-          ]"
-        >
-          <el-input v-model="form.Class" clearable placeholder="请输入班级"></el-input>
-        </el-form-item>
-
-        <el-form-item label="年级：" prop="grade"
-          :rules="[
-            { required: true, message: '请输入年级', trigger: 'blur' }
-          ]"
-        >
-          <el-input v-model="form.grade" clearable placeholder="请输入年级"></el-input>
-        </el-form-item>
-
         <el-form-item label="头像：" prop="img"
           :rules="[
             { required: true, message: '请上传头像', trigger: 'blur' }
@@ -180,7 +156,7 @@
 </template>
 
 <script>
-import studentAPI from '../../../api/studentAPI'
+import teacherAPI from '../../../../api/teacherAPI'
 export default {
   data() {
     return {
@@ -238,7 +214,7 @@ export default {
     },],
       form: {
         username: '',
-        stuID: '',
+        teacherID: '',
         name:'',
         cellphone: '',
         gender:'',
@@ -250,16 +226,13 @@ export default {
         faculty:'',
         department:'',
         major:'',
-        direction:'',
-        Class:'',
-        grade:'',
         img:'',
       }
     }
   },
   async created(){
     let { id } = this.$route.params
-    let {err,data}=await studentAPI.findByID(id)
+    let {err,data}=await teacherAPI.findByID(id)
       if(err===0){
         // console.log(data);
         data.hometown=[data.hometown.split("省")[0]+"省",data.hometown.split("省")[1]]
@@ -305,7 +278,7 @@ export default {
       this.hometown=value
     },
     async change(){
-      if(!(this.form.stuID&&this.form.name&&this.form.cellphone&&this.form.gender&&this.form.date&&this.form.birthdate&&this.form.hometown&&this.form.ID&&this.form.education&&this.form.faculty&&this.form.department&&this.form.major&&this.form.img)){
+      if(!(this.form.teacherID&&this.form.name&&this.form.cellphone&&this.form.gender&&this.form.date&&this.form.birthdate&&this.form.hometown&&this.form.ID&&this.form.education&&this.form.faculty&&this.form.department&&this.form.major&&this.form.img)){
         this.$message.error({
           message:'内容不能为空！',
           duration:2000
@@ -313,7 +286,7 @@ export default {
         return false
       }
       this.form.hometown=this.form.hometown.join("")
-      let {err}= await studentAPI.updateStudent(this.form)
+      let {err}= await teacherAPI.updateTeacher(this.form)
       if(err===0){
         this.$alert('修改成功', '提示', {
           confirmButtonText: '确定',
@@ -334,7 +307,7 @@ export default {
     top: 80px;
     left: 220px;
     right: 20px;
-    bottom: 40px;
+    bottom: 80px;
 }
 .btn{
     margin-left: 800px;
