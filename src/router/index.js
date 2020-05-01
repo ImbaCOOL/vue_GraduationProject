@@ -26,7 +26,13 @@ const stuResult = () => import('../views/student/main/StuResult.vue')
 
 // 三级
 const TDetail = () => import('../views/admin/main/TeacherList/TDetail.vue')
+const TAdd = () => import('../views/admin/main/TeacherList/TAdd.vue')
+
 const SDetail = () => import('../views/admin/main/studentList/SDetail.vue')
+const SAdd = () => import('../views/admin/main/studentList/SAdd.vue')
+
+const TSDetail = () => import('../views/admin/main/TeachScheduleL/TSDetail.vue')
+const TSAdd = () => import('../views/admin/main/TeachScheduleL/TSAdd.vue')
 
 Vue.use(VueRouter)
 
@@ -66,13 +72,23 @@ const routes = [
           },
           {
             path: "add",
-            component:TDetail
+            component:TAdd
           }
         ]
       },
       {
         path: "teachScheduleL",
-        component: teachScheduleL
+        component: teachScheduleL,
+        children: [
+          {
+            path: ":id",
+            component:TSDetail
+          },
+          {
+            path: "add",
+            component:TSAdd
+          }
+        ]
       },
       {
         path: "studentList",
@@ -84,7 +100,7 @@ const routes = [
           },
           {
             path: "add",
-            component:TDetail
+            component:SAdd
           }
         ]
       },
