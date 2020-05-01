@@ -24,6 +24,10 @@ const selectClass = () => import('../views/student/main/SelectClass.vue')
 const stuSchedule = () => import('../views/student/main/StuSchedule.vue')
 const stuResult = () => import('../views/student/main/StuResult.vue')
 
+// 三级
+const TDetail = () => import('../views/admin/main/TDetail.vue')
+const SDetail = () => import('../views/admin/main/SDetail.vue')
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -54,7 +58,13 @@ const routes = [
       },
       {
         path: "teacherList",
-        component: teacherList
+        component: teacherList,
+        children: [
+          {
+            path: ":id",
+            component:TDetail
+          }
+        ]
       },
       {
         path: "teachScheduleL",
@@ -62,7 +72,13 @@ const routes = [
       },
       {
         path: "studentList",
-        component: studentList
+        component: studentList,
+        children: [
+          {
+            path: ":id",
+            component:SDetail
+          }
+        ]
       },
       {
         path: "stuScheduleL",

@@ -5,6 +5,18 @@ class Teacher{
         let url = "/api/teacher/update"
         return axios.put(url,{obj})
     }
+    findTeacher() {
+        let url = "/api/teacher/find"
+        return axios.get(url)
+    }
+    delTeacher(teacherID) {
+        let url = "/api/teacher/del"
+        return axios.delete(url,{data:{teacherID}})
+    }
+    findByID(teacherID) {
+        let url = "/api/teacher/findByID"
+        return axios.get(url,{params:{teacherID}})
+    }
 }
 
 export default new Teacher()

@@ -2,57 +2,96 @@
   <div>
     <el-card class="card">
       <div slot="header">
-        <span>最新公告</span>
+        <span>全校教师列表</span>
       </div>
       <el-table
         :data="tableData"
         border
+        height="460"
         style="width: 100%">
         <el-table-column
-          prop="title"
-          label="公告标题">
+          prop="teacherID"
+          label="教师ID">
         </el-table-column>
         <el-table-column
-          prop="publisher"
-          label="发布者"
-          width="180">
+          prop="name"
+          label="姓名">
         </el-table-column>
         <el-table-column
-          prop="date"
-          label="发布时间"
-          width="180">
+          prop="cellphone"
+          label="手机号码">
+        </el-table-column>
+        <el-table-column
+          prop="faculty"
+          label="学院">
         </el-table-column>
         <el-table-column
           label="操作"
           width="180">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope)" type="primary" size="mini">查看详情</el-button>
+            <el-button @click="change(scope)" type="primary" size="mini">查看并修改</el-button>
+            <el-popconfirm
+              title="确定要删除吗？"
+              @onConfirm="del(scope)"
+              confirmButtonType="danger"
+              cancelButtonType=""
+            >
+              <el-button slot="reference" type="danger" size="mini" class="btn2">删除</el-button>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import teacherAPI from "../../../api/teacherAPI"
 export default {
   data() {
     return {
-      tableData: [{
-        title: '海洋工程建筑BIM实验平台设备采购项目验收公示',
-        publisher: '管理员',
-        date: '2020-04-28'
-      }]
+      tableData: []
+    }
+  },
+  async created(){
+    let {err,data}=await teacherAPI.findTeacher()
+    if(err===0){
+      // console.log(data);
+      data.forEach(element => {
+        let obj={}
+        obj.teacherID=element.teacherID
+        obj.name=element.name
+        obj.cellphone=element.cellphone
+        obj.faculty=element.faculty
+        this.tableData.push(obj)
+      });
     }
   },
   methods:{
-    handleClick(scope) {
-      console.log(scope.$index);
+    async change(scope) {
+      // console.log(scope.row.teacherID);
+      this.$router.push(`/admin/teacherList/${scope.row.teacherID}`)
+    },
+    async del(scope){
+      // console.log(scope.row.teacherID);
+      let {err}=await teacherAPI.delTeacher(scope.row.teacherID)
+      if(err===0){
+        this.$alert('删除成功', '提示', {
+          confirmButtonText: '确定',
+          type:"success",
+          callback: action => {
+            this.$router.history.go()
+          }
+        });
+      }
     }
   }
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.btn2{
+  margin-left: 10px;
+}
 </style>
