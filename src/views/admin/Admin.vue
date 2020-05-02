@@ -18,7 +18,6 @@
             <el-submenu index="3">
               <template slot="title"><i class="el-icon-s-promotion"></i>学生信息管理</template>
               <el-menu-item index="/admin/studentList">全校学生列表</el-menu-item>
-              <el-menu-item index="/admin/stuScheduleL">查看全校学生课表</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>

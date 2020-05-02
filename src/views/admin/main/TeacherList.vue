@@ -50,7 +50,6 @@
 <script>
 import teacherAPI from "../../../api/teacherAPI"
 export default {
-  name:"a",
   data() {
     return {
       tableData: []

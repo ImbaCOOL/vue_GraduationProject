@@ -13,7 +13,6 @@ const adminInfo = () => import('../views/admin/main/AdminInfo.vue')
 const teacherList = () => import('../views/admin/main/TeacherList.vue')
 const teachScheduleL = () => import('../views/admin/main/TeachScheduleL.vue')
 const studentList = () => import('../views/admin/main/StudentList.vue')
-const stuScheduleL = () => import('../views/admin/main/StuScheduleL.vue')
 
 const teachInfo = () => import('../views/teacher/main/TeachInfo.vue')
 const teachSchedule = () => import('../views/teacher/main/TeachSchedule.vue')
@@ -103,10 +102,6 @@ const routes = [
             component:SDetail
           },
         ]
-      },
-      {
-        path: "stuScheduleL",
-        component: stuScheduleL
       },
     ]
   },

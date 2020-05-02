@@ -21,6 +21,26 @@ class Teacher{
         let url = "/api/teacher/add"
         return axios.post(url,{obj})
     }
+    updateTeachSchedule(obj) {
+        let url = "/api/teachSchedule/update"
+        return axios.put(url,{obj})
+    }
+    findTeachSchedule() {
+        let url = "/api/teachSchedule/find"
+        return axios.get(url)
+    }
+    delTeachSchedule(classID) {
+        let url = "/api/teachSchedule/del"
+        return axios.delete(url,{data:{classID}})
+    }
+    findTSByID(classID) {
+        let url = "/api/teachSchedule/findByID"
+        return axios.get(url,{params:{classID}})
+    }
+    addTeachSchedule(obj) {
+        let url = "/api/teachSchedule/add"
+        return axios.post(url,{obj})
+    }
 }
 
 export default new Teacher()
