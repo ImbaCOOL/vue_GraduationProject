@@ -162,7 +162,7 @@
       </el-form>
       <div class="btn">
         <el-button type="" @click="goBack">返回</el-button>
-        <el-button type="primary" @click="change">确认添加</el-button>
+        <el-button type="primary" @click="add">确认添加</el-button>
       </div>
     </el-card>
   </div>
@@ -283,7 +283,7 @@ export default {
     handleHometown(value){
       this.hometown=value
     },
-    async change(){
+    async add(){
       if(!(this.form.username&&this.form.password&&this.form.teacherID&&this.form.name&&this.form.cellphone&&this.form.gender&&this.form.date&&this.form.birthdate&&this.form.hometown&&this.form.ID&&this.form.education&&this.form.faculty&&this.form.department&&this.form.major&&this.form.img)){
         this.$message.error({
           message:'内容不能为空！',
