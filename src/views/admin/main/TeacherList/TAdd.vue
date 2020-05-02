@@ -298,7 +298,7 @@ export default {
           confirmButtonText: '确定',
           type:"success",
           callback: action => {
-            this.$router.history.push("/admin/teacherList")
+            this.$router.history.go()
           }
         });
       }
