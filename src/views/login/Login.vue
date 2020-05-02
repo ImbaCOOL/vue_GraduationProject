@@ -72,6 +72,8 @@ export default {
             var {err,data}=await loginAPI.loginByTeach(this.form.username,this.form.password)
             if(err===0&&data!==null){
               sessionStorage.setItem("teacher",[this.form.username,this.form.password])
+              // console.log(data);
+              sessionStorage.setItem("teacherID",data.teacherID)
               this.$router.replace("/teacher/home")
             }else{
               this.$message.error({
@@ -84,6 +86,8 @@ export default {
             var {err,data}=await loginAPI.loginByStu(this.form.username,this.form.password)
             if(err===0&&data!==null){
               sessionStorage.setItem("student",[this.form.username,this.form.password])
+              // console.log(data);
+              sessionStorage.setItem("stuID",data.stuID)
               this.$router.replace("/student/home")
             }else{
               this.$message.error({
