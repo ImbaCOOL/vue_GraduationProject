@@ -14,7 +14,7 @@
           label="学生ID">
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="stuName"
           label="学生姓名">
         </el-table-column>
         <el-table-column
@@ -42,27 +42,46 @@
 </template>
 
 <script>
-import teacherAPI from '../../../api/teacherAPI'
+import studentAPI from '../../../api/studentAPI'
 export default {
   data() {
     return {
-      tableData: [
-        {
-          stuID:"S0",
-          name:'李四',
-          classID:'C0',
-          classNameCN:'英语课',
-          result:'-'
-        }
-      ]
+      tableData: []
     }
   },
   methods:{
     update(scope){
-      // console.log(scope.row.stuID);
+      // console.log(scope.row.stuID,scope.row.classID);
+      this.$prompt('请输入成绩：', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(async ({ value }) => {
+        // console.log(scope.row.stuID,scope.row.classID,value);
+        let obj={}
+        obj.stuID=scope.row.stuID
+        obj.classID=scope.row.classID
+        obj.result=value
+        // console.log(obj);
+        let {err}=await studentAPI.updateClass(obj)
+        if(err===0){
+          this.$alert('打分成功', '提示', {
+          confirmButtonText: '确定',
+          type:"success",
+          callback: action => {
+            this.$router.history.go()
+          }
+        });
+        }
+      })
     }
   },
-  async created(){}
+  async created(){
+    let {err,data}=await studentAPI.findClassByTeacherID(sessionStorage.getItem("teacherID"))
+    if(err===0){
+      // console.log(data);
+      this.tableData=data
+    }
+  }
 }
 </script>
 
