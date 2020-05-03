@@ -41,6 +41,10 @@ class Teacher{
         let url = "/api/teachSchedule/add"
         return axios.post(url,{obj})
     }
+    findTSByTeacherID(teacherID) {
+        let url = "/api/teachSchedule/findByTeacherID"
+        return axios.get(url,{params:{teacherID}})
+    }
 }
 
 export default new Teacher()
