@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="card">
-      <div slot="header" class="clearfix">
+      <div slot="header">
         <span>课程表</span>
       </div>
       <table border="2">
