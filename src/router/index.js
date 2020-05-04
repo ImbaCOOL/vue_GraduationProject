@@ -48,6 +48,13 @@ const routes = [
   {
     path: '/admin',
     component: admin,
+    beforeEnter: (to, from, next) => {
+      if (sessionStorage.getItem("admin")) {
+        next()
+      } else {
+        next("/login")
+      }
+    },
     children: [
       {
         path: "home",
@@ -113,6 +120,13 @@ const routes = [
   {
     path: '/teacher',
     component: teacher,
+    beforeEnter: (to, from, next) => {
+      if (sessionStorage.getItem("teacher")) {
+        next()
+      } else {
+        next("/login")
+      }
+    },
     children: [
       {
         path: "home",
@@ -144,6 +158,13 @@ const routes = [
   {
     path: '/student',
     component: student,
+    beforeEnter: (to, from, next) => {
+      if (sessionStorage.getItem("student")) {
+        next()
+      } else {
+        next("/login")
+      }
+    },
     children: [
       {
         path: "home",
