@@ -2,7 +2,7 @@
   <div>
     <el-card class="card">
       <div slot="header">
-        <span>全校教师课表</span>
+        <span>全校教师课程</span>
         <el-button type="primary" class="btn" @click="add">添加课程</el-button>
       </div>
       <el-table

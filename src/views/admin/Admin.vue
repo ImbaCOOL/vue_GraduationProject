@@ -13,7 +13,7 @@
             <el-submenu index="2">
               <template slot="title"><i class="el-icon-s-cooperation"></i>教师信息管理</template>
               <el-menu-item index="/admin/teacherList">全校教师列表</el-menu-item>
-              <el-menu-item index="/admin/teachScheduleL">全校教师课表</el-menu-item>
+              <el-menu-item index="/admin/teachScheduleL">全校教师课程</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
               <template slot="title"><i class="el-icon-s-promotion"></i>学生信息管理</template>
