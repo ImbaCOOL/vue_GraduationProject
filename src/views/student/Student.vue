@@ -10,11 +10,8 @@
               <el-menu-item index="/student/stuInfo">个人信息</el-menu-item>
               <el-menu-item index="/student/changePSW">修改密码</el-menu-item>
             </el-submenu>
+            <el-menu-item index="/student/selectClass"><i class="el-icon-s-cooperation"></i>网上选课</el-menu-item>
             <el-submenu index="2">
-              <template slot="title"><i class="el-icon-s-cooperation"></i>网上选课</template>
-              <el-menu-item index="/student/selectClass">专业任选课</el-menu-item>
-            </el-submenu>
-            <el-submenu index="3">
               <template slot="title"><i class="el-icon-s-promotion"></i>学生信息查询</template>
               <el-menu-item index="/student/stuSchedule">课表查询</el-menu-item>
               <el-menu-item index="/student/stuResult">成绩查询</el-menu-item>
